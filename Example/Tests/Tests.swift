@@ -1,6 +1,6 @@
 import UIKit
 import XCTest
-import RxAlamofireObjectMapper-MappableObject
+import RxAlamofireObjectMapper_MappableObject
 
 class Tests: XCTestCase {
     

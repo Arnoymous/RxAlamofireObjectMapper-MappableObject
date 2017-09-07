@@ -13,13 +13,13 @@
 
 /* Begin PBXFileReference section */
 		01D2FFC0533A673056BB1157 /* Pods_RxAlamofireObjectMapper_MappableObject_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RxAlamofireObjectMapper_MappableObject_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2DB495B6E0290C5B1AA6BBAC /* RxAlamofireObjectMapper-MappableObject.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = "RxAlamofireObjectMapper-MappableObject.podspec"; path = "../RxAlamofireObjectMapper-MappableObject.podspec"; sourceTree = "<group>"; };
 		5BA1D350880C64696B5F5D48 /* Pods-RxAlamofireObjectMapper-MappableObject_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxAlamofireObjectMapper-MappableObject_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RxAlamofireObjectMapper-MappableObject_Tests/Pods-RxAlamofireObjectMapper-MappableObject_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* RxAlamofireObjectMapper-MappableObject_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "RxAlamofireObjectMapper-MappableObject_Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
-		9C365A45915017904B5E34BA /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		D5699AD83E83285E155F4600 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		9C365A45915017904B5E34BA /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		D483B1611F60D01F009E59DA /* RxAlamofireObjectMapper+MappableObject.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; name = "RxAlamofireObjectMapper+MappableObject.podspec"; path = "../RxAlamofireObjectMapper+MappableObject.podspec"; sourceTree = "<group>"; };
+		D5699AD83E83285E155F4600 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		E5D3C9BE41A16EEB4FC66090 /* Pods-RxAlamofireObjectMapper-MappableObject_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RxAlamofireObjectMapper-MappableObject_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-RxAlamofireObjectMapper-MappableObject_Tests/Pods-RxAlamofireObjectMapper-MappableObject_Tests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -83,7 +83,7 @@
 		607FACF51AFB993E008FA782 /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
-				2DB495B6E0290C5B1AA6BBAC /* RxAlamofireObjectMapper-MappableObject.podspec */,
+				D483B1611F60D01F009E59DA /* RxAlamofireObjectMapper+MappableObject.podspec */,
 				D5699AD83E83285E155F4600 /* README.md */,
 				9C365A45915017904B5E34BA /* LICENSE */,
 			);
@@ -131,10 +131,6 @@
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {
-					607FACCF1AFB9204008FA782 = {
-						CreatedOnToolsVersion = 6.3.1;
-						LastSwiftMigration = 0820;
-					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
 						LastSwiftMigration = 0820;
@@ -178,11 +174,25 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-RxAlamofireObjectMapper-MappableObject_Tests/Pods-RxAlamofireObjectMapper-MappableObject_Tests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/RxAlamofireObjectMapper-MappableObject/RxAlamofireObjectMapper_MappableObject.framework",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/MappableObject/MappableObject.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxAlamofireObjectMapper/RxAlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/RxAlamofireObjectMapper+MappableObject/RxAlamofireObjectMapper_MappableObject.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MappableObject.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAlamofireObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAlamofireObjectMapper_MappableObject.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
