@@ -17,88 +17,74 @@ extension ObservableType where E: DataRequest {
     
     public func getObject<T: MappableObject>(withType type: T.Type? = nil,
                           keyPath: String? = nil,
-                          keyPathDelimiter: String? = nil,
+                          nestedKeyDelimiter: String? = nil,
                           context: RealmMapContext? = nil,
                           realm: Realm?,
                           mapError: Error,
                           statusCodeError:[Int:Error] = [:],
                           JSONMapHandler: ((Result<[String:Any]>, Any?, Int?)->Result<[String:Any]>?)? = nil) -> Observable<T> {
-        return self.getObject(withType: type, keyPath: keyPath, keyPathDelimiter: keyPathDelimiter, context: context, realm: realm, options: nil, mapError: mapError, statusCodeError: statusCodeError, JSONMapHandler: JSONMapHandler)
+        return self.getObject(withType: type, keyPath: keyPath, nestedKeyDelimiter: nestedKeyDelimiter, context: context, realm: realm, options: nil, mapError: mapError, statusCodeError: statusCodeError, JSONMapHandler: JSONMapHandler)
     }
     
     public func getObject<T: MappableObject>(withType type: T.Type? = nil,
                           keyPath: String? = nil,
-                          keyPathDelimiter: String? = nil,
+                          nestedKeyDelimiter: String? = nil,
                           context: RealmMapContext? = nil,
                           realm: Realm? = nil,
                           options: RealmMapOptions,
                           mapError: Error,
                           statusCodeError:[Int:Error] = [:],
                           JSONMapHandler: ((Result<[String:Any]>, Any?, Int?)->Result<[String:Any]>?)? = nil) -> Observable<T> {
-        return self.getObject(withType: type, keyPath: keyPath, keyPathDelimiter: keyPathDelimiter, context: context, realm: realm, options: options as RealmMapOptions?, mapError: mapError, statusCodeError: statusCodeError, JSONMapHandler: JSONMapHandler)
+        return self.getObject(withType: type, keyPath: keyPath, nestedKeyDelimiter: nestedKeyDelimiter, context: context, realm: realm, options: options as RealmMapOptions?, mapError: mapError, statusCodeError: statusCodeError, JSONMapHandler: JSONMapHandler)
     }
     
     private func getObject<T: MappableObject>(withType type: T.Type? = nil,
                           keyPath: String? = nil,
-                          keyPathDelimiter: String? = nil,
+                          nestedKeyDelimiter: String? = nil,
                           context: RealmMapContext? = nil,
                           realm: Realm?,
                           options: RealmMapOptions?,
                           mapError: Error,
                           statusCodeError:[Int:Error] = [:],
                           JSONMapHandler: ((Result<[String:Any]>, Any?, Int?)->Result<[String:Any]>?)? = nil) -> Observable<T> {
-        return self.getJSON(withType: [String:Any].self, keyPath: keyPath, keyPathDelimiter: keyPathDelimiter, options: .allowFragments, error: mapError, statusCodeError: statusCodeError) { result, JSON, statusCode in
-            if let customResult = JSONMapHandler?(result, JSON, statusCode) {
-                return customResult
-            }
-            if let defaultConfigResult = RxAlamofireObjectMapper.config.JSONHandler.object?(result, JSON, statusCode) {
-                return defaultConfigResult
-            }
-            return nil
-            }.mapToObject(withType: type, context: context, realm: realm, options: options, mapError: mapError)
+        return self.getJSON(withType: [String:Any].self, keyPath: keyPath, nestedKeyDelimiter: nestedKeyDelimiter, options: .allowFragments, error: mapError, statusCodeError: statusCodeError, JSONHandler: RxAlamofireObjectMapper.JSONHandler(type: T.self, JSONMapHandler: JSONMapHandler))
+            .mapToObject(withType: type, context: context, realm: realm, options: options, mapError: mapError)
     }
     
     public func getObjectArray<T: MappableObject>(withType type: T.Type? = nil,
                                keyPath: String? = nil,
-                               keyPathDelimiter: String? = nil,
+                               nestedKeyDelimiter: String? = nil,
                                context: RealmMapContext? = nil,
                                realm: Realm?,
                                mapError: Error,
                                statusCodeError:[Int:Error] = [:],
                                JSONMapHandler: ((Result<[[String:Any]]>, Any?, Int?)->Result<[[String:Any]]>?)? = nil) -> Observable<[T]> {
-        return getObjectArray(withType: type, keyPath: keyPath, keyPathDelimiter: keyPathDelimiter, context: context, realm: realm, options: nil, mapError: mapError, statusCodeError: statusCodeError, JSONMapHandler: JSONMapHandler)
+        return getObjectArray(withType: type, keyPath: keyPath, nestedKeyDelimiter: nestedKeyDelimiter, context: context, realm: realm, options: nil, mapError: mapError, statusCodeError: statusCodeError, JSONMapHandler: JSONMapHandler)
     }
     
     public func getObjectArray<T: MappableObject>(withType type: T.Type? = nil,
                                keyPath: String? = nil,
-                               keyPathDelimiter: String? = nil,
+                               nestedKeyDelimiter: String? = nil,
                                context: RealmMapContext? = nil,
                                realm: Realm? = nil,
                                options: RealmMapOptions,
                                mapError: Error,
                                statusCodeError:[Int:Error] = [:],
                                JSONMapHandler: ((Result<[[String:Any]]>, Any?, Int?)->Result<[[String:Any]]>?)? = nil) -> Observable<[T]> {
-        return getObjectArray(withType: type, keyPath: keyPath, keyPathDelimiter: keyPathDelimiter, context: context, realm: realm, options: options as RealmMapOptions?, mapError: mapError, statusCodeError: statusCodeError, JSONMapHandler: JSONMapHandler)
+        return getObjectArray(withType: type, keyPath: keyPath, nestedKeyDelimiter: nestedKeyDelimiter, context: context, realm: realm, options: options as RealmMapOptions?, mapError: mapError, statusCodeError: statusCodeError, JSONMapHandler: JSONMapHandler)
     }
     
     private func getObjectArray<T: MappableObject>(withType type: T.Type? = nil,
                                 keyPath: String? = nil,
-                                keyPathDelimiter: String?,
+                                nestedKeyDelimiter: String?,
                                 context: RealmMapContext?,
                                 realm: Realm?,
                                 options: RealmMapOptions?,
                                 mapError: Error,
                                 statusCodeError:[Int:Error],
                                 JSONMapHandler: ((Result<[[String:Any]]>, Any?, Int?)->Result<[[String:Any]]>?)?) -> Observable<[T]> {
-        return self.getJSON(withType: [[String:Any]].self, keyPath: keyPath, keyPathDelimiter: keyPathDelimiter, options: .allowFragments, error: mapError, statusCodeError: statusCodeError) { result, JSON, statusCode in
-            if let customResult = JSONMapHandler?(result, JSON, statusCode) {
-                return customResult
-            }
-            if let defaultConfigResult = RxAlamofireObjectMapper.config.JSONHandler.objectArray?(result, JSON, statusCode) {
-                return defaultConfigResult
-            }
-            return nil
-            }.mapToObjectArray(withType: type, context: context, realm: realm, options: options)
+        return self.getJSON(withType: [[String:Any]].self, keyPath: keyPath, nestedKeyDelimiter: nestedKeyDelimiter, options: .allowFragments, error: mapError, statusCodeError: statusCodeError, JSONHandler: RxAlamofireObjectMapper.JSONHandler(type: T.self, JSONMapHandler: JSONMapHandler))
+            .mapToObjectArray(withType: type, context: context, realm: realm, options: options)
     }
 }
 
@@ -163,5 +149,3 @@ extension ObservableType where E == [[String:Any]] {
         }
     }
 }
-
-
