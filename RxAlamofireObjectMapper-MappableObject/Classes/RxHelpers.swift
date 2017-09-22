@@ -22,7 +22,7 @@ extension ObservableType where E: DataRequest {
                           realm: Realm?,
                           mapError: Error,
                           statusCodeError:[Int:Error] = [:],
-                          JSONMapHandler: ((Result<[String:Any]>, Any?, Int?)->Result<[String:Any]>?)? = nil) -> Observable<T> {
+                          JSONMapHandler: ((Result<[String:Any]>, Any?, Int?, Error)->Result<[String:Any]>?)? = nil) -> Observable<T> {
         return self.getObject(withType: type, keyPath: keyPath, nestedKeyDelimiter: nestedKeyDelimiter, context: context, realm: realm, options: nil, mapError: mapError, statusCodeError: statusCodeError, JSONMapHandler: JSONMapHandler)
     }
     
@@ -34,7 +34,7 @@ extension ObservableType where E: DataRequest {
                           options: RealmMapOptions,
                           mapError: Error,
                           statusCodeError:[Int:Error] = [:],
-                          JSONMapHandler: ((Result<[String:Any]>, Any?, Int?)->Result<[String:Any]>?)? = nil) -> Observable<T> {
+                          JSONMapHandler: ((Result<[String:Any]>, Any?, Int?, Error)->Result<[String:Any]>?)? = nil) -> Observable<T> {
         return self.getObject(withType: type, keyPath: keyPath, nestedKeyDelimiter: nestedKeyDelimiter, context: context, realm: realm, options: options as RealmMapOptions?, mapError: mapError, statusCodeError: statusCodeError, JSONMapHandler: JSONMapHandler)
     }
     
@@ -46,7 +46,7 @@ extension ObservableType where E: DataRequest {
                           options: RealmMapOptions?,
                           mapError: Error,
                           statusCodeError:[Int:Error] = [:],
-                          JSONMapHandler: ((Result<[String:Any]>, Any?, Int?)->Result<[String:Any]>?)? = nil) -> Observable<T> {
+                          JSONMapHandler: ((Result<[String:Any]>, Any?, Int?, Error)->Result<[String:Any]>?)? = nil) -> Observable<T> {
         return self.getJSON(withType: [String:Any].self, keyPath: keyPath, nestedKeyDelimiter: nestedKeyDelimiter, options: .allowFragments, error: mapError, statusCodeError: statusCodeError, JSONHandler: RxAlamofireObjectMapper.JSONHandler(type: T.self, JSONMapHandler: JSONMapHandler))
             .mapToObject(withType: type, context: context, realm: realm, options: options, mapError: mapError)
     }
@@ -58,7 +58,7 @@ extension ObservableType where E: DataRequest {
                                realm: Realm?,
                                mapError: Error,
                                statusCodeError:[Int:Error] = [:],
-                               JSONMapHandler: ((Result<[[String:Any]]>, Any?, Int?)->Result<[[String:Any]]>?)? = nil) -> Observable<[T]> {
+                               JSONMapHandler: ((Result<[[String:Any]]>, Any?, Int?, Error)->Result<[[String:Any]]>?)? = nil) -> Observable<[T]> {
         return getObjectArray(withType: type, keyPath: keyPath, nestedKeyDelimiter: nestedKeyDelimiter, context: context, realm: realm, options: nil, mapError: mapError, statusCodeError: statusCodeError, JSONMapHandler: JSONMapHandler)
     }
     
@@ -70,7 +70,7 @@ extension ObservableType where E: DataRequest {
                                options: RealmMapOptions,
                                mapError: Error,
                                statusCodeError:[Int:Error] = [:],
-                               JSONMapHandler: ((Result<[[String:Any]]>, Any?, Int?)->Result<[[String:Any]]>?)? = nil) -> Observable<[T]> {
+                               JSONMapHandler: ((Result<[[String:Any]]>, Any?, Int?, Error)->Result<[[String:Any]]>?)? = nil) -> Observable<[T]> {
         return getObjectArray(withType: type, keyPath: keyPath, nestedKeyDelimiter: nestedKeyDelimiter, context: context, realm: realm, options: options as RealmMapOptions?, mapError: mapError, statusCodeError: statusCodeError, JSONMapHandler: JSONMapHandler)
     }
     
@@ -82,7 +82,7 @@ extension ObservableType where E: DataRequest {
                                 options: RealmMapOptions?,
                                 mapError: Error,
                                 statusCodeError:[Int:Error],
-                                JSONMapHandler: ((Result<[[String:Any]]>, Any?, Int?)->Result<[[String:Any]]>?)?) -> Observable<[T]> {
+                                JSONMapHandler: ((Result<[[String:Any]]>, Any?, Int?, Error)->Result<[[String:Any]]>?)?) -> Observable<[T]> {
         return self.getJSON(withType: [[String:Any]].self, keyPath: keyPath, nestedKeyDelimiter: nestedKeyDelimiter, options: .allowFragments, error: mapError, statusCodeError: statusCodeError, JSONHandler: RxAlamofireObjectMapper.JSONHandler(type: T.self, JSONMapHandler: JSONMapHandler))
             .mapToObjectArray(withType: type, context: context, realm: realm, options: options)
     }
