@@ -1,6 +1,6 @@
 PODS:
   - Alamofire (4.5.1)
-  - MappableObject (0.3.7):
+  - MappableObject (0.3.8):
     - ObjectMapper (~> 2.2)
     - RealmSwift (~> 2.10.0)
   - ObjectMapper (2.2.9)
@@ -13,8 +13,8 @@ PODS:
     - Alamofire (~> 4.5.0)
     - ObjectMapper (~> 2.2.8)
     - RxSwift (~> 3.6.1)
-  - RxAlamofireObjectMapper+MappableObject (0.1.1):
-    - MappableObject (~> 0.3.7)
+  - RxAlamofireObjectMapper+MappableObject (0.1.3):
+    - MappableObject (~> 0.3.8)
     - RxAlamofireObjectMapper (~> 0.1.8)
   - RxSwift (3.6.1)
 
@@ -27,12 +27,12 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
-  MappableObject: 74af599f9b0d56b6eb9f975b75839868c520b33b
+  MappableObject: fd997e27a7e2bfd50714e2ec5c8b2008f640850d
   ObjectMapper: 63cfe41bc6f8e7c8f44344c49901b8ae7de14c52
   Realm: fc7a317a5c2c9ba91f5f235ede4e2ea76e9eba0c
   RealmSwift: 505ed6c15942a2e76f5cfa78a8667cfa997ee75b
   RxAlamofireObjectMapper: 405f2ca5283d2342a3a297d64ef4ad91fbb287d6
-  RxAlamofireObjectMapper+MappableObject: d6eccdeaa127644e6598741b10fd56c336f19fb6
+  RxAlamofireObjectMapper+MappableObject: b817d711893728583a353a8e902543fe605a41ec
   RxSwift: f9de85ea20cd2f7716ee5409fc13523dc638e4e4
 
 PODFILE CHECKSUM: 6348078f47cc4aad686beea9d04d5fe5e99c1b93

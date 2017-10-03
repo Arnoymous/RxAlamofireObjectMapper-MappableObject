@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
 s.name             = 'RxAlamofireObjectMapper+MappableObject'
-s.version          = '0.1.2'
+s.version          = '0.1.3'
 s.summary          = 'A RxAlamofireObjectMapper helper for MappableObject.'
 
 # This description is used to generate tags and improve search results.
@@ -41,7 +41,7 @@ s.source_files = 'RxAlamofireObjectMapper-MappableObject/Classes/**/*'
 
 # s.public_header_files = 'Pod/Classes/**/*.h'
 # s.frameworks = 'UIKit', 'MapKit'
-s.dependency 'MappableObject', '~> 0.3.7'
+s.dependency 'MappableObject', '~> 0.3.8'
 s.dependency 'RxAlamofireObjectMapper', '~> 0.1.8'
 
 end
